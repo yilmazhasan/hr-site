@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { environment, EnvType } from 'src/environments/environment';
+import { environment, EnvType } from '../environments/environment';
 import { Candidate, CandidateView } from './model/Candidate.model';
-import { MockCandidateList } from 'src/app/model/MockCandidates';
+import { MockCandidateList } from '../app/model/MockCandidates';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({

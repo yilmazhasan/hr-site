@@ -8,7 +8,7 @@ export enum EnvType {
 
 export const environment = {
   production: false,
-  type: EnvType.test
+  type: EnvType.prod
 };
 
 /*
