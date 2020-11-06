@@ -11,9 +11,10 @@ import { AboutComponent } from './about/about.component';
 import { CandidateComponent } from './candidate/candidate.component';
 import {
   MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule,
-  MatListModule, MatPaginatorModule, MatTableModule, MatToolbarModule
+  MatListModule, MatPaginatorModule, MatSortModule, MatTableModule, MatToolbarModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatSidenavModule,
     MatListModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatSortModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,63 +1,50 @@
 import { Injectable } from '@angular/core';
+import { environment, EnvType } from 'src/environments/environment';
+import { Candidate, CandidateView } from './model/Candidate.model';
+import { MockCandidateList } from 'src/app/model/MockCandidates';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CandidateService {
-// i https://jsonplaceholder.typicode.com/users
-  constructor() { }
 
-  getCandidateList() {
-    const list = [
-      {
-        'id': 1,
-        'name': 'Leanne Graham',
-        'username': 'Bret',
-        'email': 'Sincere@april.biz',
-        'address': {
-          'street': 'Kulas Light',
-          'suite': 'Apt. 556',
-          'city': 'Gwenborough',
-          'zipcode': '92998-3874',
-          'geo': {
-            'lat': '-37.3159',
-            'lng': '81.1496'
-          }
-        },
-        'phone': '1-770-736-8031 x56442',
-        'website': 'hildegard.org',
-        'company': {
-          'name': 'Romaguera-Crona',
-          'catchPhrase': 'Multi-layered client-server neural-net',
-          'bs': 'harness real-time e-markets'
-        }
-      },
-      {
-        'id': 2,
-        'name': 'Ervin Howell',
-        'username': 'Antonette',
-        'email': 'Shanna@melissa.tv',
-        'address': {
-          'street': 'Victor Plains',
-          'suite': 'Suite 879',
-          'city': 'Wisokyburgh',
-          'zipcode': '90566-7771',
-          'geo': {
-            'lat': '-43.9509',
-            'lng': '-34.4618'
-          }
-        },
-        'phone': '010-692-6593 x09125',
-        'website': 'anastasia.net',
-        'company': {
-          'name': 'Deckow-Crist',
-          'catchPhrase': 'Proactive didactic contingency',
-          'bs': 'synergize scalable supply-chains'
-        }
-      }];
+  candidateList: Candidate[] = [];
+  candidateViewList: CandidateView[] = [];
 
-    list.sort((x, y)  => x.name > y.name ? 1 : -1);
-
-    return list;
+  constructor(http: HttpClient) {
+    if (environment.type === EnvType.test || environment.type === EnvType.dev) {
+      this.candidateList = MockCandidateList;
+      this.arrangeCandidateList();
+    } else {
+      http.get('https://jsonplaceholder.typicode.com/users').subscribe(list => {
+        this.candidateList = list as Candidate[];
+        this.arrangeCandidateList();
+      });
+    }
   }
+
+  arrangeCandidateList() {
+    this.candidateList.sort((x, y) => x.name > y.name ? 1 : -1);
+
+    this.candidateViewList = this.candidateList.map(
+      el => ({ id: el.id, name: el.name, email: el.email, phone: el.phone, username: el.username, company: el.company }));
+  }
+
+  async getCandidateViewList() {
+    return new Promise<object>((res, rej) => {
+        const timer = setInterval(() => {
+          if (this.candidateList.length > 0) {
+            clearInterval(timer);
+            res(this.candidateViewList);
+          }
+        }, 100);
+      });
+  }
+
+  getCandidateDetailById(id) {
+    id = String(id);
+    return this.candidateList.find(x => String(x.id) === String(id));
+  }
+
 }

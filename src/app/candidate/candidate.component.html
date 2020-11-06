@@ -1,1 +1,68 @@
-<p>candidate works!</p>
+<table id="candidate">
+  <tr>
+    <th colspan="2">Name</th>
+    <td>{{candidate.name}}</td>
+  </tr>
+  <tr>
+    <th colspan="2">Username</th>
+    <td>{{candidate.username}}</td>
+  </tr>
+  <tr>
+    <th colspan="2">Email</th>
+    <td>{{candidate.email}}</td>
+  </tr>
+  <tr>
+    <th colspan="2">Phone</th>
+    <td>{{candidate.phone}}</td>
+  </tr>
+  <tr>
+    <th colspan="2">Company</th>
+  </tr>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <td>{{candidate.company.name}}</td>
+  </tr>
+  <tr>
+    <th></th>
+    <th>Catch phrase</th>
+    <td>{{candidate.company.catchPhrase}}</td>
+  </tr>
+  <tr>
+    <th></th>
+    <th>Bs</th>
+    <td>{{candidate.company.bs}}</td>
+  </tr>
+  <tr>
+    <th colspan="2">Address</th>
+  </tr>
+  <tr>
+    <th></th>
+    <th>Street</th>
+    <td>{{candidate.address.street}}</td>
+  </tr>
+  <tr>
+    <th></th>
+    <th>Suite</th>
+    <td>{{candidate.address.suite}}</td>
+  </tr>
+  <tr>
+    <th></th>
+    <th>City</th>
+    <td>{{candidate.address.city}}</td>
+  </tr>
+  <tr>
+    <th></th>
+    <th>Zip code</th>
+    <td>{{candidate.address.zipcode}}</td>
+  </tr>
+  <tr>
+    <th></th>
+    <th>Geo </th>
+    <td>{{candidate.address.geo.lat}}-{{candidate.address.geo.lng}}</td>
+  </tr>
+  <tr>
+    <th colspan="2">Website</th>
+    <td>{{candidate.website}}</td>
+  </tr>
+</table>
